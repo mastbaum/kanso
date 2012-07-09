@@ -1210,5 +1210,5 @@ exports.appPath = function (p) {
 
 exports.isAppURL = function (url) {
     // coerce window.location to a real string in IE
-    return exports.sameOrigin(url, '' + window.location);
+    return false; // exports.sameOrigin(url, '' + window.location);
 };

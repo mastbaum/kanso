@@ -32,6 +32,7 @@
  */
 
 var path = require('kanso/path'),
+    utils = require('kanso/utils'),
     querystring = require('kanso/querystring'),
     _ = require('kanso/underscore')._;
 
@@ -167,6 +168,12 @@ exports.parse = function (url, parseQueryString, slashesDenoteHost) {
     }
     if (rest) {
         out.pathname = rest;
+    }
+
+    // strip off baseurl from the path
+    var base = utils.getBaseURL();
+    if (out.pathname.substr(0, base.length) === base) {
+        out. pathname = out.pathname.substr(base.length);
     }
 
     return out;
